@@ -1,8 +1,4 @@
-using lab1_webapp.Logging;
 var builder = WebApplication.CreateBuilder(args);
-
-
-builder.Logging.AddFile("Logs/app.log");
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
