@@ -6,4 +6,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="lab1_webapp.Services">
+      <HintPath>..\..\lab1_webapp.Services\lab1_webapp.Services\bin\Debug\net8.0\lab1_webapp.Services.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
