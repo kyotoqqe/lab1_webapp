@@ -12,6 +12,10 @@
     <button type="submit">Загрузить</button>
 </form>
 
+<div>
+    @await Component.InvokeAsync("RecentArticles")
+</div>
+
 @if (ViewBag.Message != null)
 {
     <p>@ViewBag.Message</p>

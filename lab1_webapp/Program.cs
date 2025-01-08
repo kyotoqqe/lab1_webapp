@@ -1,12 +1,16 @@
-
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using lab1_webapp.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
-builder.Services.AddControllersWithViews()
-    .AddViewLocalization();
+builder.Services.AddControllersWithViews();
 
+builder.Services.AddFluentValidationAutoValidation()
+                .AddFluentValidationClientsideAdapters();
+
+builder.Services.AddValidatorsFromAssemblyContaining<Program>(); 
 builder.Logging.AddFile("Logs/app.log");
 var app = builder.Build();
 

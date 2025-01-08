@@ -17,6 +17,23 @@ namespace lab1_webapp.Controllers
             var apiKey = "key-example"; // Ваш ключ
             _emailSender = new EmailSender(apiKey);
         }
+        public IActionResult Submit()
+        {
+            var model = new UserModel(); // Если нужно, можно передать пустую или заполненную модель
+            return View(model); // Передаем модель в представление
+        }
+        [HttpPost]
+        public IActionResult Submit(UserModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            return Content("Validation passed!");
+        }
+
+
         [HttpPost]
         public IActionResult ChangeLanguage(string culture, string returnUrl)
         {
