@@ -1,7 +1,8 @@
 using System.Diagnostics;
 using lab1_webapp.Models;
-using Microsoft.AspNetCore.Mvc;
 using lab1_webapp.Services;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace lab1_webapp.Controllers
 {
@@ -16,7 +17,17 @@ namespace lab1_webapp.Controllers
             var apiKey = "key-example"; // Ваш ключ
             _emailSender = new EmailSender(apiKey);
         }
+        [HttpPost]
+        public IActionResult ChangeLanguage(string culture, string returnUrl)
+        {
+            Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddDays(30) }
+            );
 
+            return LocalRedirect(returnUrl ?? "/");
+        }
         public async Task<IActionResult> SendEmail()
         {
             try
